@@ -18,7 +18,6 @@ app.get('/', (req, res) => {
     res.send(`
 <html>
 <head>
-<<<<<<< HEAD
 <style>
 html,body {height:100%;margin:0;padding:0;}
 img {object-fit:scale-down;width:100%;height:100%;}
@@ -42,30 +41,11 @@ img {object-fit:scale-down;width:100%;height:100%;}
     </script-->
     <img src="screen.mjpeg">
   </body>
-=======
-<title>Robot</title>
-<style>
-
-  html,body { height:100%,	margin:0;
-    padding:0;
-  }
-  body {
-	background:#404040;
-    background-image: url('/screen.mjpeg');
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-</style>
-</head>
-  <body></body>
->>>>>>> 8ac638d080c237969025190cf311ce57505efce9
 </html>
 `);
 });
 
 app.get('/screen.mjpeg', (req, res) => {
-<<<<<<< HEAD
   res.writeHead(200, {
     'Content-Type': 'multipart/x-mixed-replace; boundary=theboundary',
     'Cache-Control': 'no-cache',
@@ -105,39 +85,6 @@ content = content2.data;
     //});
   };
   send_next();
-=======
-    res.writeHead(200, {
-        'Content-Type': 'multipart/x-mixed-replace; boundary=theboundary',
-        'Cache-Control': 'no-cache',
-        'Connection': 'close',
-        'Pragma': 'no-cache'
-    });
-
-    var i = 0;
-    var stop = false;
-
-    res.connection.on('close', () => { stop = true; });
-
-    var send_next = () => {
-        if (stop) return;
-        const size = robot.getScreenSize();
-        const img = robot.screen.capture(0, 0, size.width, size.height);
-        const content2 = jpeg.encode({
-            data: img.image,
-            width: size.width,
-            height: size.height,
-        }, 50);
-        content = content2.data;
-        res.write("--theboundary\r\n");
-        res.write("Content-Type: image/jpeg\r\n");
-        res.write("Content-Length: " + content.length + "\r\n");
-        res.write("\r\n");
-        res.write(content, 'binary');
-        res.write("\r\n");
-        setTimeout(send_next, 33);
-    };
-    send_next();
->>>>>>> 8ac638d080c237969025190cf311ce57505efce9
 });
 
 var port = process.env.PORT || 5000;
