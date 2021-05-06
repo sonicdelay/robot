@@ -1,4 +1,7 @@
 var robot = require("robotjs");
+var NodeWebcam = require("node-webcam");
+
+
 var fs = require("fs-extra");
 
 var size = robot.getScreenSize();
@@ -73,3 +76,39 @@ var port = process.env.PORT || 5000;
 app.listen(port, function() {
     console.log("Listening on " + port);
 });
+
+
+
+
+// var opts = {
+//     width: 1280,
+//     height: 720,
+//     quality: 100,
+//     frames: 60,
+//     delay: 0,
+//     saveShots: true,
+//     output: "jpeg",
+//     device: false,
+//     callbackReturn: "location",
+//     verbose: false
+// };
+
+// var Webcam = NodeWebcam.create(opts);
+
+// Webcam.capture("test_picture", function(err, data) {});
+// // or
+// NodeWebcam.capture("test_picture", opts, function(err, data) {});
+
+
+// //Get list of cameras
+// Webcam.list(function(list) {
+//     var anotherCam = NodeWebcam.create({ device: list[0] });
+// });
+
+// //Return type with base 64 image
+// var opts = {
+//     callbackReturn: "base64"
+// };
+// NodeWebcam.capture("test_picture", opts, function(err, data) {
+//     var image = "<img src='" + data + "'>";
+// });
