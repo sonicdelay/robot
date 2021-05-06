@@ -14,7 +14,13 @@ var app = express(); //express.logger());
 app.get('/', (req, res) => {
   res.send(`
 <html>
-  <body style="margin:0;padding:0;">
+<head>
+<style>
+html,body {height:100%;margin:0;padding:0;}
+img {object-fit:scale-down;width:100%;height:100%;}
+</style>
+</head>
+<body style="margin:0;padding:0;">
     <!--canvas id='test_canvas' width='640px' height='480px' style='border:1px solid #d3d3d3'>
     </canvas-->
     <!--script language="JavaScript">
@@ -30,7 +36,7 @@ app.get('/', (req, res) => {
         ctx.drawImage(img, 0, 0);
       };
     </script-->
-    <img src="screen.mjpeg" style="width:100%;"><!--br/><a href=count.mjpeg>view the image by itself</a-->
+    <img src="screen.mjpeg">
   </body>
 </html>
 `);
@@ -62,7 +68,7 @@ const content2 = jpeg.encode({
   data: img.image,
   width: size.width,
   height: size.height,
-},100);
+},50);
 
 content = content2.data;
 
@@ -72,7 +78,7 @@ content = content2.data;
       res.write("\r\n");
       res.write(content, 'binary');
       res.write("\r\n");
-      setTimeout(send_next, 10);
+      setTimeout(send_next, 100);
     //});
   };
   send_next();
